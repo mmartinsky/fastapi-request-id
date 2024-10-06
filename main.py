@@ -57,23 +57,6 @@ async def read_root(request: Request):
     logger.info("Finished request")
     return {"message": "Hello, world!", "correlation_id": current_correlation_id}
 
-# Another sample endpoint to show correlation in different parts of the app
-@app.get("/items/{item_id}")
-async def read_item(item_id: int):
-    current_correlation_id = correlation_id.get()
-    logger.info("Fetching item", item_id=item_id, correlation_id=current_correlation_id)
-    return {"item_id": item_id, "correlation_id": current_correlation_id}
-
-# Logging setup at startup for demonstration purposes
-@app.on_event("startup")
-async def startup_event():
-    logger.info("Starting up FastAPI application")
-
-# Logging setup at shutdown for demonstration purposes
-@app.on_event("shutdown")
-async def shutdown_event():
-    logger.info("Shutting down FastAPI application")
-
 # Run with: uvicorn filename:app --reload
 # Ensure you have installed the dependencies asgi_correlation_id, fastapi, and structlog
 # pip install fastapi asgi-correlation-id uvicorn structlog

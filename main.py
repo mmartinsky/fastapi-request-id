@@ -27,9 +27,6 @@ structlog.configure(
         structlog.processors.format_exc_info,
         structlog.dev.ConsoleRenderer()  # Use ConsoleRenderer to print to console
     ],
-    context_class=dict,
-    logger_factory=structlog.PrintLoggerFactory(),
-    wrapper_class=structlog.stdlib.BoundLogger,
     cache_logger_on_first_use=True,
 )
 
